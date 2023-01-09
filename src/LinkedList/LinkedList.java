@@ -11,7 +11,7 @@ public class LinkedList<T>
     }
 
     private Element<T> getElementBefore(int pos)
-    {
+    { //Returns either the element before a position if pos > 0, or the element itself if pos == 0
         int index = 0;
         Element<T> current = front;
         while (index < pos-1)
