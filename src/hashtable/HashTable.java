@@ -2,9 +2,17 @@ package hashtable;
 
 public class HashTable<K, V>
 {
-    private HashTableNode<K, V>[] table;
+    private KeyValuePair<K, V>[] table;
     private int size;
     private int maxSize;
+
+//    private boolean printWithinGraph = false;
+//
+//    public HashTable(int maxSize, boolean printWithinGraph)
+//    {
+//        this(maxSize);
+//        this.printWithinGraph = printWithinGraph;
+//    }
 
     public HashTable(int maxSize)
     {
@@ -13,7 +21,7 @@ public class HashTable<K, V>
             throw new IllegalArgumentException("MaxSize must be positive!");
         }
         this.maxSize = maxSize;
-        table =  new HashTableNode[maxSize];
+        table =  new KeyValuePair[maxSize];
     }
 
     public boolean isEmpty()
@@ -59,7 +67,7 @@ public class HashTable<K, V>
         int hash = generateHash(key);
         if (table[hash] == null || table[hash].isDeleted())
         {//Already empty so can be added straight away.
-            table[hash] = new HashTableNode<K, V>(key, value);
+            table[hash] = new KeyValuePair<K, V>(key, value);
             size++;
         }
         else
@@ -79,15 +87,15 @@ public class HashTable<K, V>
             {
                 throw new UnsupportedOperationException("No empty address!");
             }
-            table[hash] = new HashTableNode<K, V>(key, value);
+            table[hash] = new KeyValuePair<K, V>(key, value);
             size++;
         }
     }
 
-    private HashTableNode<K, V> findMatch(K key)
+    private KeyValuePair<K, V> findMatch(K key)
     {
         int hash = generateHash(key);
-        HashTableNode<K, V> item = null;
+        KeyValuePair<K, V> item = null;
         if (table[hash] != null)
         {//Item at hash is not null so has existed
             if (correctNodeFound(hash, key))
@@ -112,7 +120,7 @@ public class HashTable<K, V>
 
     public V item(K key)
     {
-        HashTableNode<K, V> item = findMatch(key);
+        KeyValuePair<K, V> item = findMatch(key);
         if (item == null)
         {
             throw new IllegalArgumentException("Key "+key+" not found!");
@@ -122,7 +130,7 @@ public class HashTable<K, V>
 
     public void delete(K key)
     {
-        HashTableNode<K, V> item = findMatch(key);
+        KeyValuePair<K, V> item = findMatch(key);
         if (item == null)
         {
             throw new IllegalArgumentException("Key "+key+" not found!");
@@ -136,17 +144,30 @@ public class HashTable<K, V>
         return findMatch(key) != null;
     }
 
+    public K getKeyAtIndex(int index)
+    {
+        return (table[index] == null) ? null : table[index].getKey();
+    }
+
+    public V getValueAtIndex(int index)
+    {
+        return (table[index] == null) ? null : table[index].getValue();
+    }
+
+    public int getMaxSize()
+    {
+        return maxSize;
+    }
+
     public String toString()
     {
         StringBuilder output = new StringBuilder("{");
-
-        for (HashTableNode<K, V> item : table)
+        for (KeyValuePair<K, V> item : table)
         {
             if (item != null && !item.isDeleted())
             {
-                output.append(item);
+                output.append(item).append(", ");
             }
-//            output.append(", ");
         }
         if (!isEmpty())
         {
@@ -159,10 +180,25 @@ public class HashTable<K, V>
     public V[] asArray()
     {
         V[] array = (V[]) new Object[maxSize];
-
         for (int i = 0; i < maxSize; i++)
         {
             array[i] = ((table[i] != null && !table[i].isDeleted()) ? table[i].getValue() : null);
+        }
+        return array;
+    }
+
+    public K[] arrayOfKeys()
+    {
+        K[] array = (K[]) new Object[size];
+        int index = 0;
+        for (int i = 0; i < maxSize; i++)
+        {
+            K key = getKeyAtIndex(i);
+            if (key != null)
+            {
+                array[index] = key;
+                index++;
+            }
         }
         return array;
     }

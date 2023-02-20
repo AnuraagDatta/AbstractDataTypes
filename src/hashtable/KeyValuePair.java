@@ -1,12 +1,12 @@
 package hashtable;
 
-public class HashTableNode<K, V>
+public class KeyValuePair<K, V>
 {
     private K key;
     private V value;
     private boolean isDeleted;
 
-    public HashTableNode(K key, V value)
+    public KeyValuePair(K key, V value)
     {
         this.key = key;
         this.value = value;
@@ -35,9 +35,6 @@ public class HashTableNode<K, V>
 
     public String toString()
     {
-        String output = key.toString();
-        output += ":";
-        output += value.toString();
-        return output;
+        return key.toString() + ":" + value.toString();
     }
 }

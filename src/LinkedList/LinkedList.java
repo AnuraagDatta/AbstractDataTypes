@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.Arrays;
+
 public class LinkedList<T>
 {
     private Element<T> front;
@@ -63,6 +65,11 @@ public class LinkedList<T>
         return count;
     }
 
+    public boolean contains(T item)
+    {
+        return indexNoException(item) != -1;
+    }
+
     public int length()
     {
         return length;
@@ -70,9 +77,10 @@ public class LinkedList<T>
 
     private int indexNoException(T item) //Returns -1 when not found, rather than throwing exception
     {
-        int index = 0;
+        int index = -1;
         if (!isEmpty())
         {
+            index = 0;
             Element<T> current = front;
             while (!current.getData().equals(item) && current.getNext() != null)
             {
@@ -99,20 +107,25 @@ public class LinkedList<T>
 
     public void insert(T item, int pos)
     {
-        if (pos < 0 || pos >= length())
+        if (pos < 0 || pos > length())
         {
             throw new IndexOutOfBoundsException("Index must be between 0 and "+length()+"!");
         }
 
-        length++;
-        if (pos == 0)
+        if (pos == length)
         {
+            append(item);
+        }
+        else if (pos == 0)
+        {
+            length++;
             Element<T> temp = front;
             front = new Element<T>(item, null, temp);
             front.getNext().setPrevious(front);
         }
         else
         {
+            length++;
             //Gets the element before the position to be inserted into.
             Element<T> current = getElementBefore(pos);
             //Sets the next item to be a new element with the provided data.
@@ -142,7 +155,10 @@ public class LinkedList<T>
         {
             T item = front.getData();
             front = front.getNext();
-            front.setPrevious(null);
+            if (front != null)
+            {
+                front.setPrevious(null);
+            }
             return item;
         }
         else
@@ -214,4 +230,22 @@ public class LinkedList<T>
         }
         return array;
     }
+
+    public T[] toArray(T[] a)
+    {
+        T[] resizedArray = (T[]) Arrays.copyOf(a, length);
+        for (int i = 0; i < length; i++)
+        {
+            resizedArray[i] = get(i);
+        }
+        return resizedArray;
+    }
+
+//    public static void main(String[] args)
+//    {
+//        LinkedList<Integer> a = new LinkedList<Integer>();
+//        a.append(1);
+//        a.append(2);
+//        System.out.println(Arrays.toString(a.toArray(new Integer[]{})));
+//    }
 }

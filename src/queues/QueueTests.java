@@ -8,9 +8,9 @@ public class QueueTests
 {
     public static void main(String[] args)
     {
-        linearQueueTest();
-        circularQueueTest1();
-        circularQueueTest2();
+//        linearQueueTest();
+//        circularQueueTest1();
+//        circularQueueTest2();
         priorityQueueTest();
     }
 
@@ -159,47 +159,24 @@ public class QueueTests
 
     private static void priorityQueueTest()
     {
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(6);
-
-        //Test 1: Add element
-        priorityQueue.add(1);
-        System.out.println(priorityQueue);
-
-        //Test 2: Add element
-        priorityQueue.add(4);
-        System.out.println(priorityQueue);
-
-        //Test 3: Add element
-        priorityQueue.add(5);
-        System.out.println(priorityQueue);
-
-        //Test 4: Add element
-        priorityQueue.add(2);
-        System.out.println(priorityQueue);
-
-        //Test 5: Add element
-        priorityQueue.add(3);
-        System.out.println(priorityQueue);
-
-        //Test 6: Add element
-        priorityQueue.add(6);
-        System.out.println(priorityQueue);
-
-        //Test 7: Check for full
-        System.out.println(priorityQueue.isFull());
-
-        //Test 8: Remove element
+        PriorityQueue<String> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add("B", Integer.MAX_VALUE);
+        priorityQueue.add("C", Integer.MAX_VALUE);
+        priorityQueue.add("D", Integer.MAX_VALUE);
+        priorityQueue.add("E", Integer.MAX_VALUE);
+        priorityQueue.remove("B");
+        priorityQueue.add("B", 7);
+        priorityQueue.remove("D");
+        priorityQueue.add("D", 3);
         priorityQueue.remove();
+        priorityQueue.remove("B");
+        priorityQueue.add("B", 5);
+        priorityQueue.remove("C");
+        priorityQueue.add("C", 7);
+        priorityQueue.remove("E");
+        priorityQueue.add("E", 10);
+
         System.out.println(priorityQueue);
 
-        //Test 9: Check for full
-        System.out.println(priorityQueue.isFull());
-
-        //Test 10: Add element
-        priorityQueue.add(3);
-        System.out.println(priorityQueue);
-
-        //Test 11: Check for full
-        System.out.println(priorityQueue.isFull());
     }
 }

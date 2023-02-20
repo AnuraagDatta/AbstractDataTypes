@@ -1,68 +1,87 @@
 package queues.priorityqueue;
 
 import LinkedList.LinkedList;
+import hashtable.KeyValuePair;
 
 public class PriorityQueue<E>
 {
-    LinkedList<Integer> queue;
-    int maxSize;
+    LinkedList<KeyValuePair<E, Integer>> queue;
+    int maxSize = Integer.MAX_VALUE;
 
     public PriorityQueue(int maxSize)
     {
-        if (maxSize > 0)
-        {
-            this.maxSize = maxSize;
-            queue = new LinkedList<Integer>();
-        }
-        else
+        this();
+        if (maxSize <= 0)
         {
             throw new IllegalArgumentException("maxSize must be positive!");
         }
+        this.maxSize = maxSize;
     }
 
-    public void add(int item)
+    public PriorityQueue()
     {
-        if (!isFull())
-        {
-            if (isEmpty())
-            {
-                queue.append(item);
-            }
-            else
-            {
-                int i = 0;
-                while (i < queue.length() && queue.get(i) <= item)
-                {
-                    i++;
-                }
-                if (i < queue.length())
-                {
-                    queue.insert(item, i);
-                }
-                else
-                {
-                    queue.append(i);
-                }
-            }
-        }
-        else
+        queue = new LinkedList<KeyValuePair<E, Integer>>();
+    }
+
+    public void add(E element, int priority)
+    {
+        if (isFull())
         {
             throw new IllegalStateException("The queue is already full!");
         }
-    }
-
-    public int remove()
-    {
-        if (!isEmpty())
+        KeyValuePair<E, Integer> itemToAdd = new KeyValuePair<>(element, priority);
+        if (isEmpty())
         {
-            int item = queue.get(0);
-            queue.pop(0);
-            return item;
+            queue.append(itemToAdd);
         }
         else
         {
+            int i = 0;
+            while (i < queue.length() && queue.get(i).getValue() <= priority)
+            {
+                i++;
+            }
+            queue.insert(itemToAdd, i);
+        }
+    }
+
+    public KeyValuePair<E, Integer> remove()
+    {
+        if (isEmpty())
+        {
             throw new IllegalStateException("The queue is already empty!");
         }
+        return queue.pop();
+    }
+
+    public KeyValuePair<E, Integer> remove(E element)
+    {
+        if (isEmpty())
+        {
+            throw new IllegalStateException("The queue is already empty!");
+        }
+        for (int i = 0; i < queue.length(); i++)
+        {
+            KeyValuePair<E, Integer> item = queue.get(i);
+            if (item.getKey().equals(element))
+            {
+                return queue.remove(item);
+            }
+        }
+        throw new IllegalArgumentException("Element not found in queue!");
+    }
+
+    public Integer getPriority(E element)
+    {
+        for (int i = 0; i < queue.length(); i++)
+        {
+            KeyValuePair<E, Integer> item = queue.get(i);
+            if (item.getKey().equals(element))
+            {
+                return item.getValue();
+            }
+        }
+        throw new IllegalArgumentException("Element not found in queue!");
     }
 
     public boolean isFull()
