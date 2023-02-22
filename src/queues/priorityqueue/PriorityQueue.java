@@ -84,6 +84,12 @@ public class PriorityQueue<E>
         throw new IllegalArgumentException("Element not found in queue!");
     }
 
+    public void updatePriority(E element, Integer newPriority)
+    {
+        remove(element);
+        add(element, newPriority);
+    }
+
     public boolean isFull()
     {
         return queue.length() == maxSize;

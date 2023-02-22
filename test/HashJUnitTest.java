@@ -26,7 +26,7 @@ public class HashJUnitTest
     {
         HashTable<Integer, String> h = new HashTable<>(11);
         h.add(54, "Bill");
-        Assert.assertArrayEquals("Test 2: add 54:Bill: {,,,,,,,,,,54:Bill}", new String[]{null,null,null,null,null,null,null,null,null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 2: add 54:Bill: {,,,,,,,,,,54:Bill}", new String[]{null,null,null,null,null,null,null,null,null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class HashJUnitTest
         HashTable<Integer, String> h = new HashTable<>(11);
         h.add(54, "Bill");
         h.add(26, "Ben");
-        Assert.assertArrayEquals("Test 3: add 26:Ben: {,,,,26:Ben,,,,,,54:Bill}", new String[]{null,null,null,null,"Ben",null,null,null,null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 3: add 26:Ben: {,,,,26:Ben,,,,,,54:Bill}", new String[]{null,null,null,null,"Ben",null,null,null,null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class HashJUnitTest
         h.add(54, "Bill");
         h.add(26, "Ben");
         h.add(93, "Bob");
-        Assert.assertArrayEquals("Test 4: add 93:Bob: {,,,,26:Ben,93:Bob,,,,,54:Bill}", new String[]{null,null,null,null,"Ben","Bob",null,null,null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 4: add 93:Bob: {,,,,26:Ben,93:Bob,,,,,54:Bill}", new String[]{null,null,null,null,"Ben","Bob",null,null,null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class HashJUnitTest
         h.add(26, "Ben");
         h.add(93, "Bob");
         h.add(17, "Benny");
-        Assert.assertArrayEquals("Test 5: add 17:Benny: {,,,,26:Ben,93:Bob,17:Benny,,,,54:Bill}", new String[]{null,null,null,null,"Ben","Bob","Benny",null,null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 5: add 17:Benny: {,,,,26:Ben,93:Bob,17:Benny,,,,54:Bill}", new String[]{null,null,null,null,"Ben","Bob","Benny",null,null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class HashJUnitTest
         h.add(93, "Bob");
         h.add(17, "Benny");
         h.add(77, "Benji");
-        Assert.assertArrayEquals("Test 6: add 77:Benji: {77:Benji,,,,26:Ben,93:Bob,17:Benny,,,,54:Bill}", new String[]{"Benji",null,null,null,"Ben","Bob","Benny",null,null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 6: add 77:Benji: {77:Benji,,,,26:Ben,93:Bob,17:Benny,,,,54:Bill}", new String[]{"Benji",null,null,null,"Ben","Bob","Benny",null,null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class HashJUnitTest
         h.add(17, "Benny");
         h.add(77, "Benji");
         h.add(31, "Banksy");
-        Assert.assertArrayEquals("Test 7: add 31:Banksy: {77:Benji,,,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji",null,null,null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 7: add 31:Banksy: {77:Benji,,,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji",null,null,null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class HashJUnitTest
         h.add(77, "Benji");
         h.add(31, "Banksy");
         h.add(65, "Bobby");
-        Assert.assertArrayEquals("Test 8: add 65:Bobby: {77:Benji,65:Bobby,,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby",null,null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 8: add 65:Bobby: {77:Benji,65:Bobby,,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby",null,null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class HashJUnitTest
         h.add(31, "Banksy");
         h.add(65, "Bobby");
         h.add(11, "Bernard");
-        Assert.assertArrayEquals("Test 9: add 11:Bernard: {77:Benji,65:Bobby,11:Bernard,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby","Bernard",null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 9: add 11:Bernard: {77:Benji,65:Bobby,11:Bernard,,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby","Bernard",null,"Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class HashJUnitTest
         h.add(65, "Bobby");
         h.add(11, "Bernard");
         h.add(53, "Billy");
-        Assert.assertArrayEquals("Test 10: add 53:Billy: {77:Benji,65:Bobby,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby","Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 10: add 53:Billy: {77:Benji,65:Bobby,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Bobby","Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -239,7 +239,7 @@ public class HashJUnitTest
         h.add(11, "Bernard");
         h.add(53, "Billy");
         h.delete(65);
-        Assert.assertArrayEquals("Test 17: delete key 65: {77:Benji,,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji",null,"Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 17: delete key 65: {77:Benji,,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji",null,"Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -291,7 +291,7 @@ public class HashJUnitTest
         h.add(53, "Billy");
         h.delete(65);
         h.add(12, "Benji");
-        Assert.assertArrayEquals("Test 20: add 12:Benji: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 20: add 12:Benji: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,,,31:Banksy,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny",null,null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -310,7 +310,7 @@ public class HashJUnitTest
         h.delete(65);
         h.add(12, "Benji");
         h.add(28, "Butch");
-        Assert.assertArrayEquals("Test 20: add 28:Butch: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,31:Banksy,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,"Banksy","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 20: add 28:Butch: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,31:Banksy,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,"Banksy","Bill"}, h.arrayOfValues());
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -349,7 +349,7 @@ public class HashJUnitTest
         h.add(12, "Benji");
         h.add(28, "Butch");
         h.delete(31);
-        Assert.assertArrayEquals("Test 20: delete(31): {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,null,"Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 20: delete(31): {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,null,"Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -391,7 +391,7 @@ public class HashJUnitTest
         h.add(28, "Butch");
         h.delete(31);
         h.add(42, "Boris");
-        Assert.assertArrayEquals("Test 25: add 42:Boris: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,42:Boris,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,"Boris","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 25: add 42:Boris: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,,42:Boris,54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch",null,"Boris","Bill"}, h.arrayOfValues());
     }
 
     @Test
@@ -413,7 +413,7 @@ public class HashJUnitTest
         h.delete(31);
         h.add(42, "Boris");
         h.add(41, "Blinky");
-        Assert.assertArrayEquals("Test 26: add 41:Blinky: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,41:Blinky, 42:Boris, 54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch","Blinky","Boris","Bill"}, h.asArray());
+        Assert.assertArrayEquals("Test 26: add 41:Blinky: {77:Benji,12:Benji,11:Bernard,53:Billy,26:Ben,93:Bob,17:Benny,28:Butch,41:Blinky, 42:Boris, 54:Bill}", new String[]{"Benji","Benji","Bernard","Billy","Ben","Bob","Benny","Butch","Blinky","Boris","Bill"}, h.arrayOfValues());
     }
 
     @Test

@@ -159,6 +159,12 @@ public class HashTable<K, V>
         return maxSize;
     }
 
+    public void changeValue(K key, V newValue)
+    {
+        delete(key);
+        add(key, newValue);
+    }
+
     public String toString()
     {
         StringBuilder output = new StringBuilder("{");
@@ -177,7 +183,7 @@ public class HashTable<K, V>
         return output.toString();
     }
 
-    public V[] asArray()
+    public V[] arrayOfValues()
     {
         V[] array = (V[]) new Object[maxSize];
         for (int i = 0; i < maxSize; i++)

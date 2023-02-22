@@ -1,5 +1,7 @@
 package hashtable;
 
+import java.util.Objects;
+
 public class KeyValuePair<K, V>
 {
     private K key;
@@ -36,5 +38,14 @@ public class KeyValuePair<K, V>
     public String toString()
     {
         return key.toString() + ":" + value.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KeyValuePair<?, ?> that = (KeyValuePair<?, ?>) o;
+        return Objects.equals(key, that.key);
     }
 }
