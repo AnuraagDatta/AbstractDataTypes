@@ -1,4 +1,4 @@
-package queues.linearqueue;
+package abstractdatatypes.queues.linearqueue;
 
 public class LinearQueue
 {
@@ -62,7 +62,7 @@ public class LinearQueue
     public String toString()
     {
         StringBuilder output = new StringBuilder();
-        output.append("queues.Queue: [");
+        output.append("abstractdatatypes.queues.Queue: [");
         int i = front;
         output.append(queue[i]+", ");
         while (i != back)

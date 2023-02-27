@@ -1,8 +1,8 @@
-package queues;
+package abstractdatatypes.queues;
 
-import queues.circularqueue.CircularQueue;
-import queues.linearqueue.LinearQueue;
-import queues.priorityqueue.PriorityQueue;
+import abstractdatatypes.queues.circularqueue.CircularQueue;
+import abstractdatatypes.queues.linearqueue.LinearQueue;
+import abstractdatatypes.queues.priorityqueue.PriorityQueue;
 
 public class QueueTests
 {
@@ -16,7 +16,7 @@ public class QueueTests
 
     static void linearQueueTest()
     {
-        System.out.println("-----Linear queues.Queue Test-----");
+        System.out.println("-----Linear abstractdatatypes.queues.Queue Test-----");
         LinearQueue linearQueue = new LinearQueue(4);
 
         //Test 1: Check for empty queue
@@ -60,7 +60,7 @@ public class QueueTests
 
     private static void circularQueueTest1()
     {
-        System.out.println("-----Circular queues.Queue Test 1-----");
+        System.out.println("-----Circular abstractdatatypes.queues.Queue Test 1-----");
         CircularQueue<Integer> circularQueue = new CircularQueue<>(4);
 
         //Test 1: Check for empty queue
@@ -101,7 +101,7 @@ public class QueueTests
     }
     private static void circularQueueTest2()
     {
-        System.out.println("-----Circular queues.Queue Test 2-----");
+        System.out.println("-----Circular abstractdatatypes.queues.Queue Test 2-----");
         CircularQueue<Integer> circularQueue = new CircularQueue<>(4);
 
         //Test 1: Add element

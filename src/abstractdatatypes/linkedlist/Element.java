@@ -1,4 +1,4 @@
-package LinkedList;
+package abstractdatatypes.linkedlist;
 
 
 public class Element<T>

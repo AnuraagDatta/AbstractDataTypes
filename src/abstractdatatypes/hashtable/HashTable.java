@@ -1,18 +1,11 @@
-package hashtable;
+package abstractdatatypes.hashtable;
 
-public class HashTable<K, V>
+public class HashTable<K, V> implements IHashTable<K, V>
 {
     private KeyValuePair<K, V>[] table;
     private int size;
     private int maxSize;
 
-//    private boolean printWithinGraph = false;
-//
-//    public HashTable(int maxSize, boolean printWithinGraph)
-//    {
-//        this(maxSize);
-//        this.printWithinGraph = printWithinGraph;
-//    }
 
     public HashTable(int maxSize)
     {
@@ -21,9 +14,10 @@ public class HashTable<K, V>
             throw new IllegalArgumentException("MaxSize must be positive!");
         }
         this.maxSize = maxSize;
-        table =  new KeyValuePair[maxSize];
+        table = new KeyValuePair[maxSize];
     }
 
+    @Override
     public boolean isEmpty()
     {
         return size == 0;
@@ -34,23 +28,16 @@ public class HashTable<K, V>
         return size == maxSize;
     }
 
+    @Override
     public int length()
     {
         return size;
     }
 
-    public int midSquares(int key)
-    {
-        long square = (long) key * key; //Square key.
-        int powerOfTen = (int)Math.ceil((Math.floor(Math.log10(square)) + 1) / 2.0) + 1; //Find the place at which to cut off the square.
-        square = square % (long) Math.pow(10, powerOfTen); //Mod by power of 10 to isolate everything after required digits.
-        square = square / (long) Math.pow(10, powerOfTen - 2); //Floor div by power of 10 two less than before, to isolate only middle two digits.
-        return (int) square % maxSize; //Mod by maxSize to return hashTable location.
-    }
-
+    @Override
     public int generateHash(K key)
     {
-        return midSquares(key.toString().hashCode());
+        return midSquares(key.hashCode(), maxSize);
     }
 
     private boolean correctNodeFound(int hash, K key)
@@ -58,6 +45,7 @@ public class HashTable<K, V>
         return (!table[hash].isDeleted() && key.equals(table[hash].getKey()));
     }
 
+    @Override
     public void add(K key, V value)
     {
         if (isFull())
@@ -67,7 +55,7 @@ public class HashTable<K, V>
         int hash = generateHash(key);
         if (table[hash] == null || table[hash].isDeleted())
         {//Already empty so can be added straight away.
-            table[hash] = new KeyValuePair<K, V>(key, value);
+            table[hash] = new KeyValuePair<>(key, value);
             size++;
         }
         else
@@ -87,7 +75,7 @@ public class HashTable<K, V>
             {
                 throw new UnsupportedOperationException("No empty address!");
             }
-            table[hash] = new KeyValuePair<K, V>(key, value);
+            table[hash] = new KeyValuePair<>(key, value);
             size++;
         }
     }
@@ -108,7 +96,8 @@ public class HashTable<K, V>
                 do
                 {//Advance until key at given location matches input key, looping around until starting point reached again.
                     hash = (hash + 1) % maxSize;
-                } while (!(table[hash] == null || hash == initialHash || correctNodeFound(hash, key)));
+                }
+                while (!(table[hash] == null || hash == initialHash || correctNodeFound(hash, key)));
                 if (table[hash] != null && correctNodeFound(hash, key))
                 {//Match found.
                     item = table[hash];
@@ -118,27 +107,30 @@ public class HashTable<K, V>
         return item;
     }
 
+    @Override
     public V item(K key)
     {
         KeyValuePair<K, V> item = findMatch(key);
         if (item == null)
         {
-            throw new IllegalArgumentException("Key "+key+" not found!");
+            throw new IllegalArgumentException("Key " + key + " not found!");
         }
         return item.getValue();
     }
 
+    @Override
     public void delete(K key)
     {
         KeyValuePair<K, V> item = findMatch(key);
         if (item == null)
         {
-            throw new IllegalArgumentException("Key "+key+" not found!");
+            throw new IllegalArgumentException("Key " + key + " not found!");
         }
         item.delete();
         size--;
     }
 
+    @Override
     public boolean contains(K key)
     {
         return findMatch(key) != null;
@@ -159,12 +151,14 @@ public class HashTable<K, V>
         return maxSize;
     }
 
+    @Override
     public void changeValue(K key, V newValue)
     {
         delete(key);
         add(key, newValue);
     }
 
+    @Override
     public String toString()
     {
         StringBuilder output = new StringBuilder("{");
@@ -183,6 +177,7 @@ public class HashTable<K, V>
         return output.toString();
     }
 
+    @Override
     public V[] arrayOfValues()
     {
         V[] array = (V[]) new Object[maxSize];
@@ -193,6 +188,7 @@ public class HashTable<K, V>
         return array;
     }
 
+    @Override
     public K[] arrayOfKeys()
     {
         K[] array = (K[]) new Object[size];

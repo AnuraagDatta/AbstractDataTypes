@@ -1,7 +1,7 @@
-package queues.priorityqueue;
+package abstractdatatypes.queues.priorityqueue;
 
-import LinkedList.LinkedList;
-import hashtable.KeyValuePair;
+import abstractdatatypes.linkedlist.LinkedList;
+import abstractdatatypes.hashtable.KeyValuePair;
 
 public class PriorityQueue<E>
 {
@@ -20,7 +20,7 @@ public class PriorityQueue<E>
 
     public PriorityQueue()
     {
-        queue = new LinkedList<KeyValuePair<E, Integer>>();
+        queue = new LinkedList<>();
     }
 
     public void add(E element, int priority)

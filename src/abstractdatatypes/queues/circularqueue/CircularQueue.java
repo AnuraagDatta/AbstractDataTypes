@@ -1,6 +1,6 @@
-package queues.circularqueue;
+package abstractdatatypes.queues.circularqueue;
 
-import queues.IQueue;
+import abstractdatatypes.queues.IQueue;
 
 public class
 CircularQueue<T> implements IQueue<T>
@@ -39,9 +39,9 @@ CircularQueue<T> implements IQueue<T>
     {
         if (isEmpty())
         {
-            throw new IllegalStateException("queues.Queue is already empty!");
+            throw new IllegalStateException("abstractdatatypes.queues.Queue is already empty!");
         }
-        T item = (T)queue[front].getItem();
+        T item = queue[front].getItem();
         if (front == back)
         {
             //At this point the queue will be empty after the item is removed, so the pointers are set to reflect that

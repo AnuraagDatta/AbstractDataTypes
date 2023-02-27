@@ -1,4 +1,4 @@
-package queues.circularqueue;
+package abstractdatatypes.queues.circularqueue;
 
 public class CircularQueueNode<T>
 {

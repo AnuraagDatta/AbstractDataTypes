@@ -1,4 +1,4 @@
-package stack;
+package abstractdatatypes.stack;
 
 public class Stack<T>
 {
@@ -39,11 +39,11 @@ public class Stack<T>
         if (!isFull())
         {
             top++;
-            stack[top] = new Node<T>(item);
+            stack[top] = new Node<>(item);
         }
         else
         {
-            throw new IllegalStateException("The stack is already full!");
+            throw new IllegalStateException("The abstractdatatypes.stack is already full!");
         }
     }
 
@@ -56,7 +56,7 @@ public class Stack<T>
         }
         else
         {
-            throw new IllegalStateException("stack.Stack is already empty!");
+            throw new IllegalStateException("abstractdatatypes.stack.Stack is already empty!");
         }
     }
 
@@ -68,7 +68,7 @@ public class Stack<T>
         }
         else
         {
-            throw new IllegalStateException("Cannot peek into an empty stack!");
+            throw new IllegalStateException("Cannot peek into an empty abstractdatatypes.stack!");
         }
     }
 

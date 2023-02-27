@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import hashtable.HashTable;
+import abstractdatatypes.hashtable.HashTable;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package hashtable;
+package abstractdatatypes.hashtable;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package queues;
+package abstractdatatypes.queues;
 
 public interface IQueue<T>
 {

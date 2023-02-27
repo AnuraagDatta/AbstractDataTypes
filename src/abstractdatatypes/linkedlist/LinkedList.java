@@ -1,11 +1,22 @@
-package LinkedList;
+package abstractdatatypes.linkedlist;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class LinkedList<T>
+public class LinkedList<T> implements Iterable<T>
 {
     private Element<T> front;
     private int length = 0;
+
+    @SafeVarargs
+    public LinkedList(T... initialValues)
+    {
+        for (T value : initialValues)
+        {
+            append(value);
+        }
+    }
 
     public boolean isEmpty()
     {
@@ -38,7 +49,7 @@ public class LinkedList<T>
             {
                 current = current.getNext();
             }
-            current.setNext(new Element<T>(item, current, null));
+            current.setNext(new Element<>(item, current, null));
         }
     }
 
@@ -120,7 +131,7 @@ public class LinkedList<T>
         {
             length++;
             Element<T> temp = front;
-            front = new Element<T>(item, null, temp);
+            front = new Element<>(item, null, temp);
             front.getNext().setPrevious(front);
         }
         else
@@ -129,7 +140,7 @@ public class LinkedList<T>
             //Gets the element before the position to be inserted into.
             Element<T> current = getElementBefore(pos);
             //Sets the next item to be a new element with the provided data.
-            current.setNext(new Element<T>(item, current, current.getNext()));
+            current.setNext(new Element<>(item, current, current.getNext()));
             //Sets the previous of the item after the inserted item to be the inserted item.
             current.getNext().getNext().setPrevious(current.getNext());
         }
@@ -233,7 +244,7 @@ public class LinkedList<T>
 
     public T[] toArray(T[] a)
     {
-        T[] resizedArray = (T[]) Arrays.copyOf(a, length);
+        T[] resizedArray = Arrays.copyOf(a, length);
         for (int i = 0; i < length; i++)
         {
             resizedArray[i] = get(i);
@@ -241,11 +252,46 @@ public class LinkedList<T>
         return resizedArray;
     }
 
+    @Override
+    public Iterator<T> iterator()
+    {
+        return new LinkedListIterator<>(front);
+    }
+
+    private static class LinkedListIterator<T> implements Iterator<T>
+    {
+        private Element<T> current;
+
+        public LinkedListIterator(Element<T> front)
+        {
+            current = front;
+        }
+
+        public boolean hasNext()
+        {
+            return current != null;
+        }
+
+        public T next()
+        {
+            if (!hasNext())
+            {
+                throw new NoSuchElementException();
+            }
+            T result = current.getData();
+            current = current.getNext();
+            return result;
+        }
+    }
+
 //    public static void main(String[] args)
 //    {
 //        LinkedList<Integer> a = new LinkedList<Integer>();
 //        a.append(1);
 //        a.append(2);
-//        System.out.println(Arrays.toString(a.toArray(new Integer[]{})));
+//        for (Integer b : a)
+//        {
+//            System.out.println(b);
+//        }
 //    }
 }
